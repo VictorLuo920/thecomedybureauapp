@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+
 var commentSchema = new mongoose.Schema({
     text: String
   }, {
@@ -11,6 +12,7 @@ var userSchema = new mongoose.Schema({
     email: String,
     avatar: String,
     comments: [commentSchema],
+    // events: [eventSchema], make array of references to the event model
     googleId: String
   }, {
     timestamps: true
