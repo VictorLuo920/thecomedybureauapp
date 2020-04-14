@@ -13,7 +13,7 @@ var app = express();
 require('./config/database');
 require('./config/passport');
 
-var indexRouter = require('./routes/index');
+var eventsRouter = require('./routes/events');
 var oauthRouter = require('./routes/oauth');
 var usersRouter = require('./routes/users');
 
@@ -35,7 +35,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', indexRouter);
+app.use('/events', eventsRouter);
 app.use('/', oauthRouter);
 app.use('/users', usersRouter);
 
