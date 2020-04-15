@@ -13,8 +13,8 @@ var app = express();
 require('./config/database');
 require('./config/passport');
 
-var eventsRouter = require('./routes/events');
 var oauthRouter = require('./routes/oauth');
+var eventsRouter = require('./routes/events');
 var usersRouter = require('./routes/users');
 
 
@@ -35,8 +35,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/events', eventsRouter);
 app.use('/', oauthRouter);
+app.use('/events', eventsRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
