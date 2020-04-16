@@ -2,6 +2,30 @@ const router = require('express').Router();
 const passport = require('passport');
 const usersCtrl = require('../controllers/users');
 
+
+// O-Auth below
+router.get('/auth/google', passport.authenticate(
+    'google',
+    { scope: ['profile', 'email'] }
+));
+router.get('/oauth2callback', passport.authenticate(
+    'google',
+    {
+      successRedirect : '/',
+      failureRedirect : '/'
+    }
+));
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
+
+const isLoggedIn = (req, res, next) => {
+    if ( req.isAuthenticated() ) return next();
+    res.redirect('/auth/google');
+}
+
+
 // This is the function that should show my user profile page
 router.get('/profile', usersCtrl.show)
 
@@ -15,10 +39,6 @@ router.get('/profile', usersCtrl.show)
 //         4) I really want to know that this is MVP at this point once done... crying...
 
 
-const isLoggedIn = (req, res, next) => {
-    if ( req.isAuthenticated() ) return next();
-    res.redirect('/auth/google');
-}
 
 
 module.exports = router;

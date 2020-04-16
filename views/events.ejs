@@ -9,7 +9,7 @@
     <p>Welcome to The Comedy Bureau App</p>
     <a href="/auth/google">Login with Google</a><br>
     <a href="/logout">Logout</a><br>
-    <a href="/<%= user._id %>/user">Go to the User Page</a>
+    <a href="/profile">Go to the User Page</a>
     <!-- <form action="/<%= user.id %>" method="GET">
       <input type="hidden" name="id" value="<%= user.id %>">
       <button>Go to User Page</button>
@@ -19,7 +19,7 @@
     <div>
       <span class="card-title"> <!--these are Materialize CSS classes...-->
         <span class="student-name"><a href="<%= event.url %>"><%= event.name %></a></span>
-        <form action="/events/<%= event.id %>" method='POST'> 
+        <form action="/<%= event.id %>" method='POST'> 
           <input type="hidden" name="name" value="<%= event.name %>">
           <input type="hidden" name="url" value="<%= event.url %>">
           <button type='submit'>

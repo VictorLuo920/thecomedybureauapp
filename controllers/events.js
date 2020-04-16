@@ -13,7 +13,7 @@ const index = (req, res, next) => {
         eventsData._embedded.events[event], 
         {new: true, upsert: true},
         (err, event) => {
-          console.log("Adding or finding event:", event)
+          console.log("finished")
           // event.save();
         }
       )

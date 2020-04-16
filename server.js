@@ -13,7 +13,6 @@ var app = express();
 require('./config/database');
 require('./config/passport');
 
-var indexRouter = require('./routes/index');
 var eventsRouter = require('./routes/events');
 var usersRouter = require('./routes/users');
 
@@ -35,9 +34,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/events', eventsRouter);
+app.use('/', usersRouter);
+app.use('/', eventsRouter);
 
 
 
