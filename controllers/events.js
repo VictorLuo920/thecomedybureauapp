@@ -4,20 +4,33 @@ const Event = require('../models/event');
 const User = require('../models/user')
 
 
-// Notes about the indexing function
-//    1) I am trying to display the data that I am consuming from the 3rd party API
-//    2) I am also trying to save that data through my own data modeler, into my own database for the users to bookmark and make comments and notes. Or is this not the right part of the step to do it in?
-
 function index(req, res, next) {
+  // const userData = User.findById(req.user.id);
   request(rootURL, (err, response, body) => {
     const eventsData = JSON.parse(body);
-    res.render('events', {events: eventsData._embedded.events});
+    res.render('events', {events: eventsData._embedded.events, user: userData});
   });
 }
 
 function bookmark(req, res) {
-  res.send("this is working");
+  console.log(req.body);
+
+  Event.create(req.body, function (err, createdEvent) {
+    User.findById(req.user._id, (err, userData) => {
+      userData.bookmarkedEvents.push(createdEvent);
+      userData.save();
+      createdEvent.save();
+    })
+  });
+  // What I'm trying to do above (what Taylor said), create the event to save it to our database, and also push the saved event to the User model...
+  
+  res.redirect('/events');
+
+  // I think I know ultimately this should end up in a res.redirect to either the main page, or to the user page showing their bookmarked events
+
 }
+
+// search for one event, (in your utilties, files), go into your event Controller.
 
 // // Did a bad thing here and tried to copy and paste code again...
 // function bookmark(req, res) {
@@ -31,6 +44,10 @@ function bookmark(req, res) {
 //       });
 //     });
 // }
+
+// Notes about the indexing function
+//    1) I am trying to display the data that I am consuming from the 3rd party API
+//    2) I am also trying to save that data through my own data modeler, into my own database for the users to bookmark and make comments and notes. Or is this not the right part of the step to do it in?
 
 
 module.exports = {

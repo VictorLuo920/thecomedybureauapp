@@ -9,11 +9,19 @@
     <p>Welcome to The Comedy Bureau App</p>
     <a href="/auth/google">Login with Google</a>
     <a href="/logout">Logout</a>
+    <a href="/users/<%= user.id %>">User Page</a>
   <!-- UI Goes here! WORKING UI!!! -->
   <% events.forEach(function(event) { %>
     <div>
       <span class="card-title"> <!--these are Materialize CSS classes...-->
         <span class="student-name"><a href="<%= event.url %>"><%= event.name %></a></span>
+        <form action="/events/<%= event.id %>" method='POST'> 
+          <input type="hidden" name="name" value="<%= event.name %>">
+          <input type="hidden" name="url" value="<%= event.url %>">
+          <button type='submit'>
+            Bookmark
+          </button>
+        </form>
         <!-- a button goes here with a form method that bookmarks the events to the user page -->
       </span>
     </div>

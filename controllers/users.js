@@ -3,9 +3,10 @@ const User = require('../models/user');
 
 
 function show(req, res, next) {
-  // User.findById(req.params.id).exec(function(err, movie) {});
-  // console.log(req.query);
-  res.send('Check the console!')
+  res.send('this is working');
+  // User.findById(req.params.id, (err, user) => {
+  //   res.render('users', {user})
+  // });
 }
 
 
