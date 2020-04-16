@@ -3,7 +3,7 @@ const passport = require('passport');
 const usersCtrl = require('../controllers/users');
 
 // This is the function that should show my user profile page
-router.get('/:id', usersCtrl.show)
+router.get('/profile', usersCtrl.show)
 
 // routes not yet defined
 //         1) route to post note to user's profile page to make notes

@@ -14,7 +14,8 @@ const eventSchema = new mongoose.Schema({
     name: String,
     url: String,
     usersBookmarked: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    comments: [commentSchema]
+    comments: [commentSchema],
+    ticketmasterId: String,
   }, {
     timestamps: true
   });

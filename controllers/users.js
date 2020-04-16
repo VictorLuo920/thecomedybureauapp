@@ -7,7 +7,7 @@ const show = (req, res, next) => {
   // User.findById(req.params.id, (err, user) => {
   //   res.render('users/show', {user})
   // });
-  User.findById(req.params.id, function(err, user) {
+  User.findById(req.params.id, (err, user) => {
     if (err) return (err);
     res.render("show", { 
         user: req.user }); 
