@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 
-var commentSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
   text: String,
   userId: [{type: Schema.Types.ObjectId, ref: 'User'}],
   userName: String
@@ -10,7 +10,7 @@ var commentSchema = new mongoose.Schema({
   timestamps: true
 });
 
-var eventSchema = new mongoose.Schema({
+const eventSchema = new mongoose.Schema({
     name: String,
     url: String,
     usersBookmarked: [{type: Schema.Types.ObjectId, ref: 'User'}],

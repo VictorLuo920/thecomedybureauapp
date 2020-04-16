@@ -1,14 +1,14 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 
-var noteSchema = new mongoose.Schema({
+const noteSchema = new mongoose.Schema({
     text: String
   }, {
     timestamps: true
   });
 
-var userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     avatar: String,

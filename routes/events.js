@@ -1,15 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const eventsCtrl = require('../controllers/events')
 
 router.get('/', eventsCtrl.index);
-router.post('/:id', eventsCtrl.bookmark);
+router.post('/:id', eventsCtrl.bookmark); 
+//      Bug issues with bookmark function:
+//          - same event is being saved as separate entities each time the bookmark function is fired
+
+        //I might solve my problem with the double data creation with changing this to a put method
 
 module.exports = router;
 
-// const show = (req, res) => {
-//   res.render('todos/show', {
-//     todo: Todo.getOne(req.params.id)
-// <note to self: the above was me trying to figure out how routers and paths by id work again...>
-//   });
-// }
