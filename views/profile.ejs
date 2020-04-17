@@ -5,34 +5,26 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= user.name %></h1>
+    <h1><%= user.name %>'s Bookmarked Events</h1>
     
-    <!-- I think I need to 1) for loop through the array to produce the list... 2) nest a form that ties in comments -->
-
     <% user.bookmarkedEvents.forEach(function(event) { %>
       <div>
-        <span class="card-title"> <!--these are Materialize CSS classes...-->
+        <span class="card-title"> 
           <span class="student-name"><a href="<%= event.url %>"><%= event.name %></a></span>
-
-
-
           <form action="/<%= event.id %>" method='POST'> 
             <input type="text" name="text">
             <button type='submit'>
               Add Comment
             </button>
           </form>
-          <!-- a button goes here with a form method that bookmarks the events to the user page -->
         </span>
       </div>
       <% user.notes.forEach(function(note) {if (String(note.eventref) === event.id) { %>
       <ul>
-        <li><%= note.text %><a href="/profile/edit">Edit</a></li>
+        <li><%= note.text %><a href="/profile/edit">Edit</a></li> <!--these should be a href that hits the router for the delete function  nested here that p-->
       </ul>
       <%} }) %>
     <% }) %>
-  
-
   </body>
 </html>
 
