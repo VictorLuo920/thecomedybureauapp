@@ -13,8 +13,7 @@ const index = (req, res, next) => {
         eventsData._embedded.events[event], 
         {new: true, upsert: true},
         (err, event) => {
-          console.log("finished")
-          // event.save();
+          return;
         }
       )
     };
@@ -23,16 +22,15 @@ const index = (req, res, next) => {
 }
 
 const bookmark = (req, res, next) => {
-  Event.findOneAndUpdate({ticketmasterId: req.params.id}, (err, event) => {
+  Event.findOne({ticketmasterId: req.params.id}, (err, event) => {
     User.findById(req.user._id, (err, userData) => {
+      if (userData.bookmarkedEvents.includes(event._id)) {return};
       userData.bookmarkedEvents.push(event);
       userData.save();
     })
   });
-  res.redirect('/events');
+  res.redirect('/');
 }
-
-// I think I know ultimately this should end up in a res.redirect to either the main page, or to the user page showing their bookmarked events
 
 module.exports = {
     index,
