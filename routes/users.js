@@ -28,7 +28,7 @@ const isLoggedIn = (req, res, next) => {
 
 // This is the function that should show my user profile page
 router.get('/profile', isLoggedIn, usersCtrl.show)
-router.post('/profile', usersCtrl.createNote)
+router.post('/:id', usersCtrl.createNote)
 
 // routes not yet defined
 //         1) route to post note to user's profile page to make notes

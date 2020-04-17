@@ -10,7 +10,14 @@ const show = (req, res, next) => {
 
 
 const createNote = (req, res, next) => {
-
+  Event.findOne({_id: req.params.id}, (err, event) => {
+    User.findById(req.user._id, (err, userData) => {
+      req.body.eventref = req.params.id;
+      userData.notes.push(req.body);
+      userData.save();
+    })
+  });
+  res.redirect("/profile");
 };
 const edit = () => {};
 const deleteNote = () => {};
