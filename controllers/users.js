@@ -33,7 +33,7 @@ const edit = (req, res, next) => {
 const update = (req, res, next) => {
   User.findByIdAndUpdate(
     req.user._id,
-    req.body, //the req.body is text that ultimately should be set in the note.text field, if we're for looping to see into that ID again... shit...)
+    req.body,//user.notes[i].text = req.body.text ??// the req.body is text that ultimately should be set in the note.text field, if we're for looping to see into that ID again... shit...)
     (err, updatedUser) => {
       console.log(req.user._id);
       res.redirect("/profile");
