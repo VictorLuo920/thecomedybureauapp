@@ -15,7 +15,7 @@ const createNote = (req, res, next) => {
       req.body.eventref = req.params.id;
       userData.notes.push(req.body);
       userData.save();
-    })
+    })//might be trying to use .populate somehow to get references to work better...
   });
   res.redirect("/profile");
 };
@@ -29,3 +29,8 @@ module.exports = {
   edit,
   delete: deleteNote
 };
+
+// user.bookmarkedEvents.forEach(function(event) {
+//   console.log(event.id);
+//   user.notes.forEach(function)
+// })
