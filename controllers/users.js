@@ -15,11 +15,30 @@ const createNote = (req, res, next) => {
       req.body.eventref = req.params.id;
       userData.notes.push(req.body);
       userData.save();
-    })//might be trying to use .populate somehow to get references to work better...
+    })
   });
   res.redirect("/profile");
 };
-const edit = () => {};
+
+const edit = (req, res, next) => {
+  User.findById(req.user._id)
+    .populate('bookmarkedEvents').exec(function(err, user) {
+      res.render('edit', {user});
+  });
+};
+
+const update = (req, res, next) => {
+  User.findByIdAndUpdate(
+    req.user._id,
+    req.body, //the req.body is text that ultimately should be set in the note.text field, if we're for looping to see into that ID again... shit...)
+    (err, updatedUser) => {
+      console.log(req.user._id);
+      res.redirect("/profile");
+    }
+  );
+};
+
+
 const deleteNote = () => {};
 
 
@@ -27,10 +46,6 @@ module.exports = {
   show,
   createNote,
   edit,
+  update,
   delete: deleteNote
 };
-
-// user.bookmarkedEvents.forEach(function(event) {
-//   console.log(event.id);
-//   user.notes.forEach(function)
-// })

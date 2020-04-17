@@ -27,7 +27,7 @@
       </div>
       <% user.notes.forEach(function(note) {if (String(note.eventref) === event.id) { %>
       <ul>
-        <li><%= note.text %></li>
+        <li><%= note.text %><a href="/profile/edit">Edit</a></li>
       </ul>
       <%} }) %>
     <% }) %>
