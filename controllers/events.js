@@ -4,7 +4,6 @@ const Event = require('../models/event');
 const User = require('../models/user')
 
 const index = (req, res, next) => {
-  const userData = User.findById(req.params.id);
   request(rootURL, (err, response, body) => {
     const eventsData = JSON.parse(body);
     for (event = 0; event < eventsData._embedded.events.length; event++) {
@@ -17,7 +16,7 @@ const index = (req, res, next) => {
         }
       )
     };
-    res.render('events', {events: eventsData._embedded.events, user: userData});
+    res.render('events', {events: eventsData._embedded.events});
   });
 }
 

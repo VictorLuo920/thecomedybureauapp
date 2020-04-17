@@ -1,23 +1,24 @@
 const User = require('../models/user');
-
+const Event = require('../models/event');
 
 
 const show = (req, res, next) => {
-  User.findById(req.params.id, (err, user) => {
-    if (err) return (err);
-    res.render("profile", { 
-        user: req.user }); 
-  });
-}
+  User.findById(req.user._id).populate('bookmarkedEvents').exec((err, user) => {
+    res.render("profile", {user})
+  })
+};
 
-const create = () => {};
+
+const createNote = (req, res, next) => {
+
+};
 const edit = () => {};
 const deleteNote = () => {};
 
 
 module.exports = {
   show,
-  create,
+  createNote,
   edit,
   delete: deleteNote
 };
