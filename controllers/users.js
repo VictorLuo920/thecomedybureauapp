@@ -53,6 +53,13 @@ const deleteNote = (req, res, next) => {
   );
 };
 
+// const TryingtoWritenewFunctions = (req, res, next) => {User.findById(req.user._id).populate(' how do I specifically populate the embebdded subdocument?').then((user) => {
+//   user.notes[i].text = req.body.text;/// these two lines are about updating the notes array
+//   //res.redirect("/profile");
+
+//   user.notes = user.notes.filter( (note, noteidx, notesarr) => {return note.eventref !==  req.params.id} );
+//   // this is trying to delete
+// })}
 
 module.exports = {
   show,

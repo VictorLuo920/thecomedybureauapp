@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const noteSchema = new mongoose.Schema({
   text: String, 
-  eventref: {type: Schema.Types.ObjectId, ref: 'Event'}
+  // eventref: {type: Schema.Types.ObjectId, ref: 'Event'}
   }, {
     timestamps: true
 });

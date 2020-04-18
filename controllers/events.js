@@ -5,6 +5,7 @@ const User = require('../models/user')
 
 // this loads the events page: first it makes a request to the API to retrieve those JSON packs, parses them, uses a for loop to iterate over each received package and magically copying a version of the data onto my own database! the power of findOneandUpdate with upsert...
 const index = (req, res, next) => {
+  const userData = User.findById(req.params.id);
   request(rootURL, (err, response, body) => {
     const eventsData = JSON.parse(body);
     for (event = 0; event < eventsData._embedded.events.length; event++) {
@@ -17,7 +18,7 @@ const index = (req, res, next) => {
         }
       )
     };
-    res.render('events', {events: eventsData._embedded.events});
+    res.render('events', {events: eventsData._embedded.events, user: userData});
   });
 }
 
@@ -30,7 +31,7 @@ const bookmark = (req, res, next) => {
       userData.save();
     })
   });
-  res.redirect('/');
+  res.redirect('/'); // wondering: I should have this redirect to profile right? I'm not sure about mounting my isLoggedIn middleware
 }
 
 module.exports = {
